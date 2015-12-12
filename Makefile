@@ -17,7 +17,7 @@ pdf: $(PDFS)
 	--blanks $*.blanks \
 	--signatures signatures.json \
 	--title "Agreement for Design Services" \
-	--number ase \
+	--number decimal \
 	< $*.generated > $*.docx
 
 agreement-hourly-maintenance.generated: agreement.cform generate.js
