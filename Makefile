@@ -2,10 +2,11 @@ CF = node_modules/.bin/commonform
 PTEMPLATE = node_modules/plaintemplate
 FORMS = agreement-hourly-maintenance.generated agreement-monthly-maintenance.generated
 TARGETS = $(FORMS:.generated=.docx)
+PDFS = $(FORMS:.generated=.pdf)
 
 all: $(TARGETS)
 
-pdf: $(TARGETS:.docx=.pdf)
+pdf: $(PDFS)
 
 %.pdf: %.docx
 	doc2pdf $<
@@ -53,4 +54,4 @@ critique: $(FORMS) $(CF)
 	done
 
 clean:
-	rm -rf $(TARGETS)
+	rm -rf $(FORMS) $(TARGETS) $(PDFS)
