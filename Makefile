@@ -5,12 +5,13 @@ TARGETS = $(FORMS:.generated=.docx)
 
 all: $(TARGETS)
 
-%.docx: %.generated %.blanks options signatures.json $(CF)
+%.docx: %.generated %.blanks signatures.json $(CF)
 	$(CF) render \
 		--format docx \
 		--blanks $*.blanks \
 		--signatures signatures.json \
-		$(shell cat options) \
+		--title "Agreement for Design Services" \
+		--number ase \
 		< $*.generated > $*.docx
 
 agreement-hourly-maintenance.generated: agreement.cform generate.js
