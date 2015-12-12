@@ -1,0 +1,17 @@
+sudo: false
+language: "node_js"
+node_js: "stable"
+script: "make lint"
+before_deploy: "make"
+deploy:
+  provider: "releases"
+  api_key:
+    secure: "uOOL1R2l8JLP97/7k1yKTmcdeeY/QuUVRRSQV2jY3QpfVvA82mmovrs2D2874a7fwhmuOtOX5bkTnw6UB55RmxB7SeWA4GDbbXgIhaSm0tB7iLw1s95bWBht1i4R1mnqkUkBoJPzw9oM3D8ug3bwL5fW+f7RoKVetJRmQytlvneMdROiahNJTNmzYW4dO7v5SrcgDw+qm/vZq/gK7uksV3PV/j42E1k6m/gZkurFqLw5M0XUWJYFg3hR8A78KJWlFLJH/MLMGVEO+6dLZwaO9oZoSKx0gslNttalj1NUn/CE31t0oq57Z0stXCeQJkCx7COELA483OJNlo2+F+I2yqDsKSrmowm6WnrvCr799T8QXFgjTy7hDJlDtz8QG6fjlnCcKwozQYxsOWgJFDGZ0DR7OIlePassTWwQZKe1v8G48oDgIcI5WVXs4H0VQg1BvgqGSR94SosrCqyrSULS/MUFJb2B63IbwOEstdE6+P5D7jWuzHx5snKlpgX/ODU9LncWAS/hn2fZ2j1FiaKAYoyBq3A23y1mPEhBhVADZRJUx73/YU5mHn7vhiks5b0IkU2TIKS6Pl1i/jENQEJ8OBkkgBBf7uAXoS/S23HCgDK2lHT5xcGbNtHGipeyG+MgtSy82MvN1Z0BigeA0Dd4ZUV8kMcXYFj4tha4j28wKkU="
+  file:
+    - "agreement-hourly-maintenance.docx"
+    - "agreement-monthly-maintenance.docx"
+  skip_cleanup: true
+  on:
+    repo: "kemitchell/aiga-interactive-assigned"
+    branch: "master"
+    tags: true
