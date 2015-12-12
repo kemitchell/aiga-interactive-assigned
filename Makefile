@@ -5,6 +5,11 @@ TARGETS = $(FORMS:.generated=.docx)
 
 all: $(TARGETS)
 
+pdf: $(TARGETS:.docx=.pdf)
+
+%.pdf: %.docx
+	doc2pdf $<
+
 %.docx: %.generated %.blanks signatures.json $(CF)
 	$(CF) render \
 		--format docx \
