@@ -14,9 +14,16 @@ agreement-monthly-maintenance.cform: agreement.cform generate.js
 $(CF) $(plaintemplate):
 	npm i
 
-%.docx: %.cform options signatures.json $(CF)
+%.directions: %.cform $(CF)
+	$(CF) directions < $< > $@
+
+%.blanks: blanks.js %.directions blanks.json
+	node $^ > $@
+
+%.docx: %.cform %.blanks options signatures.json $(CF)
 	$(CF) render \
 		--format docx \
+		--blanks $*.blanks \
 		--signatures signatures.json \
 		$(shell cat options) \
 		< $*.cform > $*.docx
