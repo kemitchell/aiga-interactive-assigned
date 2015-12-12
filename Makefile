@@ -1,13 +1,22 @@
 CF=node_modules/.bin/commonform
+plaintemplate=node_modules/plaintemplate
 
-all: agreement.docx
+all: agreement-hourly-maintenance.docx agreement-monthly-maintenance.docx
 
-$(CF):
-	npm i commonform-cli
+generate.js: $(plaintemplate)
 
-%.docx: %.cform %.options %.signatures.json $(CF)
+agreement-hourly-maintenance.cform: agreement.cform generate.js
+	node generate.js hourly < agreement.cform > $@
+
+agreement-monthly-maintenance.cform: agreement.cform generate.js
+	node generate.js monthly < agreement.cform > $@
+
+$(CF) $(plaintemplate):
+	npm i
+
+%.docx: %.cform options signatures.json $(CF)
 	$(CF) render \
 		--format docx \
-		--signatures $*.signatures.json \
-		$(shell cat $*.options) \
+		--signatures signatures.json \
+		$(shell cat options) \
 		< $*.cform > $*.docx
