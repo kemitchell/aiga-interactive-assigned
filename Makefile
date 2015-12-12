@@ -1,7 +1,9 @@
 CF=node_modules/.bin/commonform
 plaintemplate=node_modules/plaintemplate
+FORMS=agreement-hourly-maintenance.generated agreement-monthly-maintenance.generated
+TARGETS=$(FORMS:.generated=.docx)
 
-all: agreement-hourly-maintenance.docx agreement-monthly-maintenance.docx
+all: $(TARGETS)
 
 generate.js: $(plaintemplate)
 
@@ -27,3 +29,22 @@ $(CF) $(plaintemplate):
 		--signatures signatures.json \
 		$(shell cat options) \
 		< $*.generated > $*.docx
+
+.PHONY: lint critique clean
+
+lint: $(FORMS) $(CF)
+	for form in $(FORMS); do \
+		echo ; \
+		echo $$form; \
+		$(CF) lint < $$form; \
+	done; \
+
+critique: $(FORMS) $(CF)
+	for form in $(FORMS); do \
+		echo ; \
+		echo $$form ; \
+		$(CF) critique < $$form; \
+	done
+
+clean:
+	rm -rf $(TARGETS)
