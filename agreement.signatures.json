@@ -1,8 +1,23 @@
-[ { "header": "By their execution, the parties hereto have agreed to all of the terms and conditions of this Agreement effective as of the last date of signature, and each signatory represents that it has the full authority to enter into this Agreement and to bind her/his respective party to all of the terms and conditions herein.",
+[
+  {
+    "header": "By their execution, the parties hereto have agreed to all of the terms and conditions of this Agreement effective as of the last date of signature, and each signatory represents that it has the full authority to enter into this Agreement and to bind her/his respective party to all of the terms and conditions herein.",
     "term": "Designer",
-    "information": [ "date", "address", "email" ] },
-  { "header": "By their execution, the parties hereto have agreed to all of the terms and conditions of this Agreement effective as of the last date of signature, and each signatory represents that it has the full authority to enter into this Agreement and to bind her/his respective party to all of the terms and conditions herein.",
+    "information": [
+      "date",
+      "address",
+      "email"
+    ]
+  },
+  {
+    "header": "By their execution, the parties hereto have agreed to all of the terms and conditions of this Agreement effective as of the last date of signature, and each signatory represents that it has the full authority to enter into this Agreement and to bind her/his respective party to all of the terms and conditions herein.",
     "term": "Client",
     "entities": [
-      { } ],
-    "information": [ "date", "address", "email" ] } ]
+      {}
+    ],
+    "information": [
+      "date",
+      "address",
+      "email"
+    ]
+  }
+]
