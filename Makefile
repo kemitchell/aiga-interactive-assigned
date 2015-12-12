@@ -5,25 +5,25 @@ all: agreement-hourly-maintenance.docx agreement-monthly-maintenance.docx
 
 generate.js: $(plaintemplate)
 
-agreement-hourly-maintenance.cform: agreement.cform generate.js
+agreement-hourly-maintenance.generated: agreement.cform generate.js
 	node generate.js hourly < agreement.cform > $@
 
-agreement-monthly-maintenance.cform: agreement.cform generate.js
+agreement-monthly-maintenance.generated: agreement.cform generate.js
 	node generate.js monthly < agreement.cform > $@
 
 $(CF) $(plaintemplate):
 	npm i
 
-%.directions: %.cform $(CF)
+%.directions: %.generated $(CF)
 	$(CF) directions < $< > $@
 
 %.blanks: blanks.js %.directions blanks.json
 	node $^ > $@
 
-%.docx: %.cform %.blanks options signatures.json $(CF)
+%.docx: %.generated %.blanks options signatures.json $(CF)
 	$(CF) render \
 		--format docx \
 		--blanks $*.blanks \
 		--signatures signatures.json \
 		$(shell cat options) \
-		< $*.cform > $*.docx
+		< $*.generated > $*.docx
