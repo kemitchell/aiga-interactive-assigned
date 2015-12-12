@@ -12,12 +12,12 @@ pdf: $(TARGETS:.docx=.pdf)
 
 %.docx: %.generated %.blanks signatures.json $(CF)
 	$(CF) render \
-		--format docx \
-		--blanks $*.blanks \
-		--signatures signatures.json \
-		--title "Agreement for Design Services" \
-		--number ase \
-		< $*.generated > $*.docx
+	--format docx \
+	--blanks $*.blanks \
+	--signatures signatures.json \
+	--title "Agreement for Design Services" \
+	--number ase \
+	< $*.generated > $*.docx
 
 agreement-hourly-maintenance.generated: agreement.cform generate.js
 	node generate.js hourly < agreement.cform > $@
